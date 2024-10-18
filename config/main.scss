@@ -1,0 +1,103 @@
+@use './reset.scss';
+@use './variaveis.scss';
+@use 'sass:math';
+
+@function pixelParaEm($alvoEmPixel, $contextoEmPixel: 16px) {
+    @return math.div($alvoEmPixel, $contextoEmPixel)+em;
+}
+
+body {
+    background-color: variaveis.$corDeFundo;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #182C61;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: pixelParaEm(16px) 0;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu li {
+    font-weight: bold;
+    margin-left: pixelParaEm(24px);
+}
+
+.menu li a {
+    color: variaveis.$corDoLink;
+    text-decoration: none;
+}
+
+section {
+    padding: pixelParaEm(56px) 0;
+}
+
+.products {
+    margin-top: pixelParaEm(40px);
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+}
+
+.product-item img {
+    width: 100%;
+    border-radius: pixelParaEm(16px);
+}
+
+.product-button {
+    display: block;
+    background-color: variaveis.$corDoButton;
+    color: variaveis.$corDoLink;
+    text-align: center;
+    padding: pixelParaEm(8px) 0;
+    border-radius: pixelParaEm(8px);
+    margin-top: pixelParaEm(8px);
+    text-decoration: none;
+}
+
+.product-button:hover {
+    background-color: darken(variaveis.$corDoButton, 15%);
+}
+
+@media screen and (max-width: 1023px) {
+    .container {
+        max-width: 80%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .products {
+        display: block;
+    }
+
+    .product-item  {
+        margin-bottom: pixelParaEm(32px);
+    }
+}
